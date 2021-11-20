@@ -2,6 +2,7 @@ package com.dilemme.server;
 
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Run {
 
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String welcome(){
 	    return "Please come later the web site is in building ! (- ";
 	}
