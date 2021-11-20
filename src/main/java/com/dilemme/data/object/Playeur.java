@@ -1,38 +1,42 @@
 package com.dilemme.data.object;
 
 
+import com.dilemme.tools.Tool;
 import com.dilemme.tools.Tool.Coup;
 
 public class Playeur {
 	
+	private int idPlayeur;
 	private String name;
+	private boolean hasPlayed = false;
+	
+	
+	Playeur(String name){
+		this.name =  name;
+		idPlayeur = Tool.randomId();
+	}
+	
+	
+	
+
+
+	public int getIdPlayeur() {
+		return idPlayeur;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	private Coup decision;
-	
-	Playeur(String name){
-		this.name =  name;
-	}
-	
-	Coup giveDecision(){
-		return decision;
-	}
-	
-	void createParty() {
-		
-	}
-	void joinParty(int idParty) {
-		
+	public boolean isHasPlayed() {
+		return hasPlayed;
 	}
 
-	public Coup getDecision() {
-		return decision;
+
+	public void setHasPlayed(boolean hasPlayed) {
+		this.hasPlayed = hasPlayed;
 	}
 
-	public void setDecision(Coup decision) {
-		this.decision = decision;
-	}
+	
 
 }
