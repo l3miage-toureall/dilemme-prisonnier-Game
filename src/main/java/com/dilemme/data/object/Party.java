@@ -202,12 +202,13 @@ public class Party {
 		return this.currentTurnNumber == this.numberOfturns? true: false;
 	}
 
-	void join(Playeur playeur) {
+	 public void join(Playeur playeur) {
 		playeur2 = playeur;
 		this.isJoined = true;
 		playeur2Coups = new ArrayList<Coup>();
 		currentTurn = new Turn(playeur1,playeur2);
 		this.currentTurnNumber = 0;
+		this.isJoined = true;
 	}
 
 	public Strategy leaveParty(Playeur playeur, int idStrategy) {

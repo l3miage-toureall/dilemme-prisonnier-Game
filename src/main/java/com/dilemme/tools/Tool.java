@@ -1,5 +1,10 @@
 package com.dilemme.tools;
 
+import java.util.List;
+
+import com.dilemme.data.object.Party;
+import com.dilemme.data.object.Playeur;
+
 public class Tool {
 	
 	public static enum Coup {
@@ -27,6 +32,26 @@ public class Tool {
 	public static int random0_4() {
 		int number = 1+ (int)(Math.random() * (4 - 1));
 		return number;
+	}
+	public static Playeur getPlayeur(List<Playeur> playeurs, String name) {
+		Playeur playeur = new Playeur("");
+		for(Playeur p : playeurs) {
+			if ( p.getName()== name) {
+				playeur = p;
+				
+			}
+		}
+		return playeur;
+		
+	}
+	public static Party getParty(List<Party> partys, int idParty) {
+		Party party = new Party(null,-1);
+		for(Party p : partys) {
+			if(p.getId() == idParty) {
+				party = p;
+			}
+		}
+		return party;
 	}
 
 }

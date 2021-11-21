@@ -11,7 +11,7 @@ public class Playeur {
 	private boolean hasPlayed = false;
 	
 	
-	Playeur(String name){
+	public Playeur(String name){
 		this.name =  name;
 		idPlayeur = Tool.randomId();
 	}
