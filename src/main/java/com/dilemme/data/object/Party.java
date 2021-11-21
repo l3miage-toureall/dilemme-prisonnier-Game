@@ -214,10 +214,12 @@ public class Party {
 	public Strategy leaveParty(Playeur playeur, int idStrategy) {
 		if(playeur.getName() == this.playeur1.getName()) {
 			this.playeur1 = null;
+			this.setPlayeur1HasLeave(true);
 			return chooseStrategy(idStrategy);
 		}
 		else {
 			this.playeur2 = null;
+			this.setPlayeur2HasLeave(true);
 			return chooseStrategy(idStrategy);
 		}
 	}

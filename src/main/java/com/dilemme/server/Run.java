@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,6 +56,38 @@ public class Run {
 			isJoinned = true;
 		}
 		return isJoinned;
+	}
+	
+	@GetMapping("/play/{playeurName}&{coup}&{idParty}")
+	boolean play(@PathVariable(value="playeurName") String name, @PathVariable(value="coup") String coup, @PathVariable(value="idParty") int idParty) {
+		boolean hasPlayed = false;
+		Playeur playeur = Tool.getPlayeur(playeurs, name);
+		Party party = Tool.getParty(partys, idParty);
+		if(playeur.getName() != "" && party.getPlayeur1() != null) {
+			if(coup == "coopérer") {
+				party.getCurrentTurn().play(playeur.getIdPlayeur(), Tool.Coup.COOPERER);
+			    hasPlayed = true;	
+			}
+			else {
+				party.getCurrentTurn().play(playeur.getIdPlayeur(), Tool.Coup.TRAHIR);
+			    hasPlayed = true;
+			}
+		}
+		return hasPlayed;
+	}
+	
+	@GetMapping("/leave/{idParty}&{playeurName}&{idStrategy}")
+	boolean leave(@PathVariable(value="idParty") int idParty, @PathVariable(value="playeurName") String name, @PathVariable(value="idStrategy") int idStrategy) {
+		boolean hasLeaved = false;
+		Party party = Tool.getParty(partys, idParty);
+		Playeur playeur = Tool.getPlayeur(playeurs, name);
+		if(playeur.getName() != "" && party.getPlayeur1() != null) {
+			party.leaveParty(playeur,idStrategy);
+			hasLeaved = true;
+		}
+		
+		
+		return hasLeaved;
 	}
 	
 	
