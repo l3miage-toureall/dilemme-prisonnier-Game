@@ -27,13 +27,13 @@ public class Run {
 	    return "Please come later the web site is in building ! (- ";
 	}
 	
-	@GetMapping("/{playeurName}")
-	boolean createPlayeur(@PathVariable(value="playeurName") String name) {
+	@GetMapping("/create-playeur/{playeurName}")
+	int  createPlayeur(@PathVariable(value="playeurName") String name) {
 		Playeur playeur = new Playeur(name);
 		playeurs.add(playeur);
-		return true;	
+		return playeur.getIdPlayeur();	
 	}
-	@GetMapping("/newParty/{numberOfTun}&{nomPlayeur}")
+	@GetMapping("/new-party/{numberOfTun}&{nomPlayeur}")
 	boolean createParty(@PathVariable(value="numberOfTurn")  int number, @PathVariable( value="nomPlayeur") String name) {
 		boolean created = false;
 		Playeur playeur = Tool.getPlayeur(playeurs, name);
@@ -86,8 +86,26 @@ public class Run {
 			hasLeaved = true;
 		}
 		
-		
 		return hasLeaved;
+	}
+	
+	@GetMapping("/endGame")
+	boolean endGame() {
+		playeurs = null;
+		partys = null;
+		return true;
+		
+	}
+	@GetMapping("/get-all-openned-Partys")
+	List<Party> getPartysOpenned(){
+		List<Party> partysOpenned = new ArrayList<Party>();
+		for(Party p : partys) {
+			if( p.isJoined() == false) {
+				partysOpenned.add(p);
+			}
+		}
+		
+		return partysOpenned;
 	}
 	
 	
